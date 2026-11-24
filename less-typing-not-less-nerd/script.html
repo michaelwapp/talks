@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Less Typing, Not Less Nerd · Script</title>
+  <link rel="stylesheet" href="../engine/fonts/fonts.css" onerror="this.remove()">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
+  <style>
+    @page { size: A4; margin: 18mm 18mm 20mm; }
+    :root { --ink: #1b1d21; --muted: #5c6370; --accent: #c2410c; --line: #e3e0d8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f6f5f2; color: var(--ink); font: 400 12pt/1.55 "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; background: #fff; }
+    .bar { max-width: 760px; margin: 16px auto 0; padding: 0 24px; display: flex; gap: 12px; align-items: center; color: var(--muted); font-size: 14px; }
+    .bar button { font: 600 14px/1 inherit; padding: 10px 14px; border: 0; border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer; }
+    h1 { font-size: 24pt; line-height: 1.15; margin: 0 0 .4em; }
+    h2 { font-size: 15pt; margin: 1.8em 0 .5em; padding-top: .6em; border-top: 2px solid var(--ink); break-after: avoid; }
+    h3 { font-size: 12.5pt; margin: 1.4em 0 .4em; break-after: avoid; }
+    p { margin: 0 0 .65em; }
+    p > strong:first-child:last-child { display: block; margin-top: 1.2em; font-size: 12.5pt; break-after: avoid; }
+    em { color: var(--muted); }
+    code { font: 400 .85em "Martian Mono", Menlo, monospace; color: var(--accent); }
+    blockquote { margin: .6em 0 1em; padding: .4em 0 .4em 14px; border-left: 3px solid var(--accent); }
+    blockquote p { margin: 0; }
+    ul, ol { margin: 0 0 .8em; padding-left: 1.3em; }
+    hr { border: 0; border-top: 1px solid var(--line); margin: 1.6em 0; }
+    table { border-collapse: collapse; width: 100%; margin: .6em 0 1em; font-size: 10.5pt; }
+    th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    a { color: var(--accent); }
+    @media print {
+      body { background: #fff; }
+      .bar { display: none; }
+      main { max-width: none; padding: 0; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar"><button type="button" onclick="print()">Save as PDF</button><span>Opens the print dialog. Choose “Save as PDF”.</span></div>
+  <main id="out"><p>Loading SCRIPT.md…</p></main>
+  <script src="../engine/markdown.js?v=8"></script>
+  <script>
+    fetch("SCRIPT.md").then(r => (r.ok ? r.text() : Promise.reject()))
+      .then(t => {
+        document.getElementById("out").innerHTML = MiniMarkdown.render(t);
+        if (location.search.includes("print")) setTimeout(print, 400);
+      })
+      .catch(() => {
+        document.getElementById("out").innerHTML = "<p>Couldn't load SCRIPT.md. Serve the folder first: <code>python3 -m http.server 8000</code>, then open <code>http://localhost:8000/less-typing-not-less-nerd/script.html</code>.</p>";
+      });
+  </script>
+</body>
+</html>
