@@ -9,7 +9,7 @@ Slides, scripts and the deck engine for my conference talks. I'm the CTO of [Bau
 | | |
 | --- | --- |
 | **Slides (PDF)** | [less-typing-not-less-nerd/slides.pdf](less-typing-not-less-nerd/slides.pdf): every slide in its finished state |
-| **Live deck** | [less-typing-not-less-nerd/index.html](less-typing-not-less-nerd/index.html): the deck as presented, with the agent terminal (see [Run a talk](#run-a-talk)) |
+| **Live deck** | [michaelwapp.github.io/talks/less-typing-not-less-nerd](https://michaelwapp.github.io/talks/less-typing-not-less-nerd/): the interactive deck as presented, in your browser. Press `→` to step through, including every agent run, and `?` for all keys |
 | **Script** | [less-typing-not-less-nerd/SCRIPT.md](less-typing-not-less-nerd/SCRIPT.md): what I said, slide by slide |
 | **Research** | [less-typing-not-less-nerd/RESEARCH.md](less-typing-not-less-nerd/RESEARCH.md): ten great talks and what this one borrowed from them |
 
